@@ -10,6 +10,7 @@ Redistribution and use in source and binary forms, with or without modification,
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //-->
 <?php
+   include 'db.php';
    define("WORK_DIRECTORY", "work/");
    define("TMP_DIRECTORY", "tmp/");
    //150% with 154digits
@@ -341,7 +342,8 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
   function showStatus(){
     echo "<table border='1' cellpadding='3'>\n<tr>\n<th>Number</th><th>Name</th><th>Count</th><th>Status</th><th>Start time</th><th>End time</th><th>Current Size</th><th>Target Size</th></tr>";
     echo "<tr>";
-    exec("sqlite3 work.db \"select * from job;\"", $output);
+    #exec("sqlite3 work.db \"select * from job;\"", $output);
+    $output = DB::getAlljobs();
     for ($i = 0; $i < count($output); $i++){
       $arr = explode("|", $output[$i]);
       for ($j = 0; $j < count($arr); $j++){

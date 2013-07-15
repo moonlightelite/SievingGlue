@@ -8,11 +8,6 @@ class DB
       self::$getInitial = new DB();
     return self::$getInitial;
   }
-
-  public function __construct()
-  {
-  }
-
   private static $db_path = 'db/work.db';
 
   public static function workjobExist($name){
